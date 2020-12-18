@@ -15,9 +15,8 @@ const createComment = async ({
 }
 
 const getCommentsBySection = async ({ sectionId }) => {
-  const section = commentModel.find({ sectionId }).sort({ sendTime: -1 })
-  await section.save()
-  return section
+  const comments = await commentModel.find({ sectionId }).sort({ sendTime: -1 })
+  return comments
 }
 
 export default {

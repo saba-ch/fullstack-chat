@@ -61,11 +61,11 @@ class Socket {
     }
   }
 
-  onMessage({ sender, sectionId, socket }) {
+  onMessage({ sender, socket }) {
     return async ({ message }) => {
       const msg = await commentService.createComment({
         sender,
-        sectionId,
+        sectionId: socket.nsp.name.slice(1),
         message
       })
 

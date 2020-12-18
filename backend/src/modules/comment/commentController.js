@@ -4,7 +4,7 @@ const getCommentsBySection = async (req, res) => {
   try {
     const { sectionId } = req
 
-    const comments = await commentService.getCommentsBySection(sectionId)
+    const comments = await commentService.getCommentsBySection({ sectionId })
 
     if (!comments) return res.status(404).send({ message: 'Section Not found' })
 

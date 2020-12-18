@@ -9,6 +9,7 @@ import Socket from './socket'
 import { authenticate } from './middlewares'
 
 import sectionRoutes from './modules/section/sectionRoutes'
+import commentRoutes from './modules/comment/commentRoutes'
 
 dotenv.config({
   path: path.join(__dirname, `../config/${process.env.NODE_ENV || 'local'}.env`)
@@ -26,6 +27,7 @@ const bootstrap = async () => {
   app.use(authenticate)
 
   app.use(sectionRoutes)
+  app.use(commentRoutes)
 
   app.all('*', (_req, res) => {
     res.status(404).send({ message: 'Not Found' })
