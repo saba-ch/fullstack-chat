@@ -1,0 +1,5 @@
+runtime: nodejs12
+service: facebook-comments-backend
+includes:
+  - config/local.env
+  - config/prod.env

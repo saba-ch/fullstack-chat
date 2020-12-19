@@ -1,10 +1,13 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 
+import { WelcomeIcon } from 'assets'
+
 import {
   StyledContainer,
   StyledDescription,
-  StyledButton
+  StyledButton,
+  StyledImage
 } from './MainStyles'
 
 const Main = () => {
@@ -17,9 +20,18 @@ const Main = () => {
   return (
     <StyledContainer>
       <StyledDescription>
-        hey
+        Website For People Who Likes To Talk In Facebook Comments Privately
       </StyledDescription>
-      <StyledButton onClick={onContinue}>CONTINUE</StyledButton>
+      <StyledImage
+        src={WelcomeIcon}
+      />
+      <StyledButton
+        onClick={onContinue}
+        type='primary'
+        size='large'
+      >
+        CONTINUE
+      </StyledButton>
     </StyledContainer>
   )
 }

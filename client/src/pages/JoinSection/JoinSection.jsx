@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 
 import UserContext from 'context/UserContext'
 import { sectionService, storageService } from 'services'
+import { JoinIcon } from 'assets'
 
 import {
   StyledContainer,
@@ -13,7 +14,11 @@ import {
   StyledNameInput,
   StyledIdButton,
   StyledNameButton,
-  StyledPasswordInput
+  StyledPasswordInput,
+  StyledLeftContainer,
+  StyledRightContainer,
+  StyledImage,
+  StyledRootContainer
 } from './JoinSectionStyles'
 
 const JoinSection = () => {
@@ -59,46 +64,52 @@ const JoinSection = () => {
   }
   
   return (
-    <StyledContainer>
-      <StyledBlockContainer onSubmit={handleJoinSubmit}>
-        <StyledJoinHeader>
-          Join Comment Section
-        </StyledJoinHeader>
-        <StyledIdInput
-          onChange={handleSectionIdChange}
-          value={sectionId}
-          placeholder='Section Id'
-          required
-        />
-        <StyledPasswordInput
-          onChange={e => setJoinPass(e.target.value)}
-          value={joinPass}
-          placeholder='Password'
-          type='password'
-          required
-        />
-        <StyledIdButton htmlType='submit'>JOIN</StyledIdButton>
-      </StyledBlockContainer>
-      <StyledBlockContainer onSubmit={handleCreateSubmit}>
-        <StyledCreateHeader>
-          Create Comment Section
-        </StyledCreateHeader>
-        <StyledNameInput
-          onChange={handleSectionNameChange}
-          value={sectionName}
-          placeholder='Section Name'
-          required
-        />
-        <StyledPasswordInput
-          onChange={e => setCreatePass(e.target.value)}
-          placeholder='Password'
-          type='password'
-          value={createPass}
-          required
-        />
-        <StyledNameButton htmlType='submit'>CREATE</StyledNameButton>
-      </StyledBlockContainer>
-    </StyledContainer>
+    <StyledRootContainer>
+      <StyledContainer>
+        <StyledLeftContainer>
+          <StyledBlockContainer onSubmit={handleJoinSubmit}>
+            <StyledJoinHeader>Join Comment Section</StyledJoinHeader>
+            <StyledIdInput
+              onChange={handleSectionIdChange}
+              value={sectionId}
+              placeholder='Section Id'
+              required
+            />
+            <StyledPasswordInput
+              onChange={e => setJoinPass(e.target.value)}
+              value={joinPass}
+              placeholder='Password'
+              type='password'
+              required
+            />
+            <StyledIdButton htmlType='submit'>JOIN</StyledIdButton>
+          </StyledBlockContainer>
+          <StyledBlockContainer onSubmit={handleCreateSubmit}>
+            <StyledCreateHeader>Create Comment Section</StyledCreateHeader>
+            <StyledNameInput
+              onChange={handleSectionNameChange}
+              value={sectionName}
+              placeholder='Section Name'
+              required
+            />
+            <StyledPasswordInput
+              onChange={e => setCreatePass(e.target.value)}
+              placeholder='Password'
+              type='password'
+              value={createPass}
+              required
+            />
+            <StyledNameButton htmlType='submit'>CREATE</StyledNameButton>
+          </StyledBlockContainer>
+        </StyledLeftContainer>
+        <StyledRightContainer>
+          <StyledImage
+            src={JoinIcon}
+            alt='join'
+          />
+        </StyledRightContainer>
+      </StyledContainer>
+    </StyledRootContainer>
   )
 }
 

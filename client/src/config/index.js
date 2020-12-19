@@ -1,10 +1,9 @@
 let config = {}
-
 switch (process.env.REACT_APP_STAGE) {
   case 'production':
     config = {
-      APIURL: 'https://someurl.ge',
-      WSURL: 'wss://someurl.ge',
+      APIURL: 'https://facebook-comments-backend-dot-facebook-comments-299117.ew.r.appspot.com',
+      WSURL: 'wss://facebook-comments-backend-dot-facebook-comments-299117.ew.r.appspot.com',
     }
     break
   default:

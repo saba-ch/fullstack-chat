@@ -5,7 +5,7 @@ export const StyledContainer = styled.div`
 `
 
 export const StyledPageHeader = styled(PageHeader)`
-  background-color: #3578E5;
+  background-color: #66CCCC;
   div > span {
     color: #fff;
   }

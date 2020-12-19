@@ -8,6 +8,7 @@ const useComments = ({ sectionId }) => {
   const [comments, setComments] = React.useState([])
   const [typingState, setTypingState] = React.useState({})
   const { user: { name } } = React.useContext(UserContext)
+  const soundRef = React.useRef()
 
   const setupSocket = React.useCallback(async () => {
     await Socket.connect({
@@ -18,7 +19,10 @@ const useComments = ({ sectionId }) => {
       }
     })
 
-    Socket.socket.on('message', (newComment) => setComments(state => ([...state, newComment])))
+    Socket.socket.on('message', (newComment) => {
+      setComments(state => ([...state, newComment]))
+      soundRef.current.play()
+    })
 
     let timer
     Socket.socket.on('typing/start', ({ userName }) => {
@@ -31,7 +35,7 @@ const useComments = ({ sectionId }) => {
   
   React.useEffect(() => {
     setupSocket()
-  }, [setupSocket])
+  }, [setupSocket, sectionId, name, setTypingState])
 
   React.useEffect(() => {
     commentService.getComments()
@@ -44,7 +48,7 @@ const useComments = ({ sectionId }) => {
     Socket.socket.emit('message', { message })
   }
 
-  const sentTyping = (message) => {
+  const sentTyping = () => {
     Socket.socket.emit('typing')
   }
 
@@ -52,7 +56,8 @@ const useComments = ({ sectionId }) => {
     comments,
     sendMessage,
     sentTyping,
-    typingState
+    typingState,
+    soundRef
   }
 }
 

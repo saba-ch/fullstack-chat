@@ -11,8 +11,9 @@ import { authenticate } from './middlewares'
 import sectionRoutes from './modules/section/sectionRoutes'
 import commentRoutes from './modules/comment/commentRoutes'
 
+console.log("🚀 ~ file: index.js ~ line 22 ~ process.env.NODE_ENV", process.env.NODE_ENV)
 dotenv.config({
-  path: path.join(__dirname, `../config/${process.env.NODE_ENV || 'local'}.env`)
+  path: path.join(__dirname, `../config/local.env`)
 })
 
 const PORT = process.env.PORT || 8000
@@ -23,6 +24,10 @@ const bootstrap = async () => {
     useCreateIndex: true
   })
   console.log('Connected to mongodb')
+
+  app.get('/', (req, res) => {
+    res.status(200).send({ success: true })
+  })
 
   app.use(authenticate)
 

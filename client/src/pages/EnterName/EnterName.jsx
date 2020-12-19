@@ -32,8 +32,18 @@ const EnterName = () => {
   return (
     <StyledContainer>
       <StyledForm onSubmit={onSubmit}>
-        <StyledInput onChange={handleChange} value={name} required />
-        <StyledButton htmlType='submit'>CONTINUE</StyledButton>
+        <StyledInput
+          onChange={handleChange}
+          placeholder='Enter Your Full Name'
+          value={name}
+          required
+        />
+        <StyledButton
+          type='primary'
+          htmlType='submit'
+        >
+          CONTINUE
+        </StyledButton>
       </StyledForm>
     </StyledContainer>
   )

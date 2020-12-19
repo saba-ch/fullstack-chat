@@ -16,7 +16,7 @@ build
 .env.test.local
 local.env
 prod.env
-
+.gcloudignore
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
