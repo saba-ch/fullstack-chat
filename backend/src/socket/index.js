@@ -75,11 +75,11 @@ class Socket {
 
   onConnect(socket) {
     const { handshake, nsp } = socket
-    socket.userName = handshake.query.userName
+    socket.userName = handshake.query.name
 
     socket.on('message', this.onMessage({
       sender: socket.userName,
-      sectionId: nsp.name,
+      sectionId: nsp.name.slice(1),
       socket
     }))
 

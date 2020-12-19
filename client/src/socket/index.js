@@ -11,8 +11,6 @@ class Socket {
 
   static connect = ({ nsp, query }) => {
     return new Promise((resolve, reject) => {
-      if (Socket.socket) return
-
       const socket = io(`${config.WSURL}/${nsp}`, {
         reconnectionDelayMax: 10000,
         query

@@ -1,7 +1,5 @@
-import { jwtService } from '../services'
-
 const isAuth = (req, res, next) => {
-  if (!req.sessionId) return res.status(401).send({ message: 'You are not authorized' })
+  if (!req.sectionId) return res.status(401).send({ message: 'You are not authorized' })
   next()
 }
 

@@ -29,7 +29,7 @@ const JoinSection = () => {
   const handleJoinSubmit = async (e) => {
     e.preventDefault()
 
-    const { data: section } = await sectionService.joinSection({ id: sectionId, password: joinPass })
+    const { data: section } = await sectionService.joinSection({ sectionId, password: joinPass })
 
     storageService.setJwtToken(section.token)
     

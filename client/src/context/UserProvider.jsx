@@ -1,9 +1,13 @@
 import React from 'react'
 
+import { storageService } from 'services'
+
 import UserContext from './UserContext'
 
 const UserProvider = ({ children }) => {
-  const [user, setUser] = React.useState({})
+  const [user, setUser] = React.useState({
+    name: storageService.getName()
+  })
 
   const updateUser = (updates) => {
     setUser(state => ({ ...state, ...updates }))

@@ -24,7 +24,7 @@ const commentSchema = new mongoose.Schema({
   }
 })
 
-commentSchema.index({ sendTime: -1 })
+commentSchema.index({ sectionId: 1, sendTime: 1 })
 
 const CommentModel = mongoose.model('Comment', commentSchema)
 

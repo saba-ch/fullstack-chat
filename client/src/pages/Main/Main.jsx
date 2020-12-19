@@ -11,7 +11,7 @@ const Main = () => {
   const history = useHistory()
 
   const onContinue = () => {
-    history.push('/join-section')
+    history.push('/enter-name')
   }
   
   return (

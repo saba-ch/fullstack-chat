@@ -3,7 +3,7 @@ import jwtService from '../../services/jwtService'
 import sectionModel from './sectionModel'
 
 const joinSection = async (sectionId, password) => {
-  const section = await sectionModel.findone({ _id: sectionId, password })
+  const section = await sectionModel.findOne({ _id: sectionId, password })
 
   const token = jwtService.sign({ id: section.id })
 
