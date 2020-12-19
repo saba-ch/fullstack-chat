@@ -11,7 +11,6 @@ import { authenticate } from './middlewares'
 import sectionRoutes from './modules/section/sectionRoutes'
 import commentRoutes from './modules/comment/commentRoutes'
 
-console.log("🚀 ~ file: index.js ~ line 22 ~ process.env.NODE_ENV", process.env.NODE_ENV)
 dotenv.config({
   path: path.join(__dirname, `../config/local.env`)
 })
