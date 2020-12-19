@@ -1,17 +1,20 @@
 import React from 'react'
 
+import { SendIcon } from 'assets'
+
 import {
   StyledContainer,
-  StyledFormInputContainer,
   StyledFormInput,
-  StyledFormButtonContainer,
-  StyledFormButton
+  StyleSubContainer,
+  StyledFormButton,
+  StyledSendIcon
 } from './SectionInputStyles'
 
-const SectionInput = ({ sendMessage }) => {
+const SectionInput = ({ sendMessage, sentTyping, typingState }) => {
   const [message, setMessage] = React.useState('')
   
   const handleChange = (e) => {
+    sentTyping()
     setMessage(e.target.value)
   }
 
@@ -19,23 +22,26 @@ const SectionInput = ({ sendMessage }) => {
     e.preventDefault()
     if(!message) return
     sendMessage(message)
+    setMessage('')
   }
   
   return (
     <StyledContainer>
-      <StyledFormInputContainer>
-        <StyledFormInput rows={4} onChange={handleChange} value={message} />
-      </StyledFormInputContainer>
-      <StyledFormButtonContainer>
+      <StyleSubContainer>
+        <StyledFormInput
+          onChange={handleChange}
+          placeholder='Add Comment'
+          value={message}
+        />
         <StyledFormButton
           htmlType="submit"
           onClick={onSubmit}
           type="primary"
-          size='large'
+          size='small'
         >
-          Add Comment
+          <StyledSendIcon src={SendIcon} alt='Send' />
         </StyledFormButton>
-      </StyledFormButtonContainer>
+      </StyleSubContainer>
     </StyledContainer>
   )
 }

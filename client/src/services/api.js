@@ -18,6 +18,14 @@ class Api {
       
       return config
     })
+
+    this.instance.interceptors.response.use((res) => {
+      if(res.status === 401) {
+        localStorage.clear()
+        window.location = '/'
+      }
+      return res
+    })
   }
 
   post = (...args) => {

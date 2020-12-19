@@ -11,12 +11,20 @@ import { StyledContainer } from './SectionStyles'
 
 const Section = () => {
   const { sectionId } = useParams()
-  const { comments, sendMessage } = useComments({ sectionId })
+  const { comments, sendMessage, sentTyping, typingState } = useComments({ sectionId })
+
   return (
     <StyledContainer>
       <SectionHeader />
-      <SectionComments comments={comments} />
-      <SectionInput sendMessage={sendMessage} />
+      <SectionComments
+        comments={comments}
+        typingState={typingState}
+      />
+      <SectionInput
+        sendMessage={sendMessage}
+        sentTyping={sentTyping}
+        typingState={typingState}
+      />
     </StyledContainer>
   )
 }

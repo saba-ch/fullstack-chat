@@ -4,25 +4,38 @@ import moment from 'moment'
 import {
   StyledListItem,
   StyledContainer,
-  StyledComment
+  StyledComment,
+  StyledRootContainer,
+  StyledTyping
 } from './SectionCommentsStyles'
 
-const SectionComments = ({ comments }) => {
+const SectionComments = ({ comments, typingState }) => {
+  const listRef = React.useRef()
+
+  React.useEffect(() => {
+    if (listRef.current) listRef.current.scrollIntoView({ behavior: 'smooth' })
+  }, [comments, typingState])
+
   return (
-    <StyledContainer
-      dataSource={comments}
-      itemLayout="horizontal"
-      renderItem={comment => (
-        <StyledListItem>
-          <StyledComment
-            author={comment.sender}
-            // avatar={item.avatar}
-            content={comment.message}
-            datetime={moment(comment.sendTime).format('MM:DD HH:mm')}
-          />
-        </StyledListItem>
+    <StyledRootContainer>
+      <StyledContainer
+        dataSource={comments}
+        itemLayout="horizontal"
+        renderItem={comment => (
+          <StyledListItem>
+            <StyledComment
+              author={comment.sender}
+              content={comment.message}
+              datetime={moment(comment.sendTime).format('MM:DD HH:mm')}
+            />
+          </StyledListItem>
+        )}
+      />
+      {typingState.userName && (
+        <StyledTyping>{`${typingState.userName} is typing...`}</StyledTyping>
       )}
-    />
+      <div ref={listRef} />
+    </StyledRootContainer>
   )
 }
 

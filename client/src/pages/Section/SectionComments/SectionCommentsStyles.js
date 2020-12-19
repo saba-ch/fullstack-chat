@@ -2,8 +2,14 @@ import styled from 'styled-components'
 import { Comment, List } from 'antd';
 
 export const StyledContainer = styled(List)`
+  /* overflow-y: scroll; */
+  /* padding: 0 20px; */
+`
+
+export const StyledRootContainer = styled.div`
   overflow-y: scroll;
   padding: 0 20px;
+  position: relative;
 `
 
 export const StyledListItem = styled.li`
@@ -20,4 +26,9 @@ export const StyledComment = styled(Comment)`
     font-weight: bold;
     font-size: 16px;
   }
+`
+
+export const StyledTyping = styled.p`
+  position: absolute;
+  bottom: 5px;
 `

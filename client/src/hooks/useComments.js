@@ -6,17 +6,32 @@ import Socket from 'socket'
 
 const useComments = ({ sectionId }) => {
   const [comments, setComments] = React.useState([])
+  const [typingState, setTypingState] = React.useState({})
   const { user: { name } } = React.useContext(UserContext)
-  
-  React.useEffect(() => {
-    Socket.connect({
+
+  const setupSocket = React.useCallback(async () => {
+    await Socket.connect({
       nsp: sectionId,
       query: {
         token: storageService.getJwtToken(),
         name
       }
     })
-  }, [sectionId, name])
+
+    Socket.socket.on('message', (newComment) => setComments(state => ([...state, newComment])))
+
+    let timer
+    Socket.socket.on('typing/start', ({ userName }) => {
+      if(timer) clearTimeout(timer)
+      timer = setTimeout(() => setTypingState({}), 1000)
+
+      setTypingState({ userName })
+    })
+  }, [sectionId, name, setTypingState])
+  
+  React.useEffect(() => {
+    setupSocket()
+  }, [setupSocket])
 
   React.useEffect(() => {
     commentService.getComments()
@@ -29,9 +44,15 @@ const useComments = ({ sectionId }) => {
     Socket.socket.emit('message', { message })
   }
 
+  const sentTyping = (message) => {
+    Socket.socket.emit('typing')
+  }
+
   return {
     comments,
-    sendMessage
+    sendMessage,
+    sentTyping,
+    typingState
   }
 }
 

@@ -32,12 +32,7 @@ class Socket {
 
   onTyping(socket) {
     const { userName } = socket
-    let timer
     return () => {
-      if (timer) clearTimeout(timer)
-
-      timer = setTimeout(() => socket.nsp.emit('typing/stop', { userName }), 1000)
-
       socket.nsp.emit('typing/start', { userName })
     }
   }
